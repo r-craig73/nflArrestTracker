@@ -14,9 +14,15 @@ $(document).ready(function() {
         format: 'json'
       },
       success: function(response) {
-        $('.showText').text(`The following players are alleged to have committed theft:`);        for(let i = 0; i < response.length; i++){
+        $('.showText').text(`The following players are alleged to have committed theft:`);
+        for(let i = 0; i < response.length; i++) {
           let element = `${response[i].Name}`
+          if (i < response.length - 1) {
           $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+          }
+          else {
+          $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+          }
         }
       },
       error: function() {
@@ -35,9 +41,15 @@ $(document).ready(function() {
         format: 'json'
       },
       success: function(response) {
-        $('.showText').text(`The following players are alleged to have committed murder:`);        for(let i = 0; i < response.length; i++){
+        $('.showText').text(`The following players are alleged to have committed murder:`);
+        for(let i = 0; i < response.length; i++) {
           let element = `${response[i].Name}`
+          if (i < response.length - 1) {
           $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+          }
+          else {
+          $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+          }
         }
       },
       error: function() {
@@ -56,9 +68,15 @@ $(document).ready(function() {
         format: 'json'
       },
       success: function(response) {
-        $('.showText').text(`The following players are alleged to have committed a DUI:`);        for(let i = 0; i < response.length; i++){
+        $('.showText').text(`The following players are alleged to have committed a DUI:`);
+        for(let i = 0; i < response.length; i++) {
           let element = `${response[i].Name}`
-          $('.showList').append(" " + '<li>' + element + ',' +  '</li>');
+          if (i < response.length - 1) {
+          $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+          }
+          else {
+          $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+          }
         }
       },
       error: function() {
@@ -77,9 +95,15 @@ $('#PlayersDidDrug').click(function(){
       format: 'json'
     },
     success: function(response) {
-      $('.showText').text(`The following players are alleged to have drug possession:`);        for(let i = 0; i < response.length; i++){
+      $('.showText').text(`The following players are alleged to have drug possession:`);
+      for(let i = 0; i < response.length; i++) {
         let element = `${response[i].Name}`
-        $('.showList').append(" " + '<li>' + element + ',' +  '</li>');
+        if (i < response.length - 1) {
+        $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+        $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
       }
     },
     error: function() {
@@ -98,9 +122,15 @@ $('#PlayersDidDrug').click(function(){
       format: 'json'
     },
     success: function(response) {
-      $('.showText').text(`The following players are alleged to have drug possession:`);        for(let i = 0; i < response.length; i++){
+      $('.showText').text(`The following players are alleged to have drug possession:`);
+      for(let i = 0; i < response.length; i++) {
         let element = `${response[i].Name}`
-        $('.showList').append(" " + '<li>' + element + ',' +  '</li>');
+        if (i < response.length - 1) {
+        $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+        $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
       }
     },
     error: function() {
@@ -119,9 +149,42 @@ $('#PlayersDomAbuse').click(function(){
       format: 'json'
     },
     success: function(response) {
-      $('.showText').text(`The following players are alleged to have commited domnestic violence:`);        for(let i = 0; i < response.length; i++){
+      $('.showText').text(`The following players are alleged to have commited domnestic violence:`);
+      for(let i = 0; i < response.length; i++) {
         let element = `${response[i].Name}`
-        $('.showList').append(" " + '<li>' + element + ',' +  '</li>');
+        if (i < response.length - 1) {
+        $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+        $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
+      }
+    },
+    error: function() {
+      $('#errors').text("There was an error processing your request.  Please try again.")
+    }
+  })
+});
+
+$('#PlayersDogFighting').click(function(){
+  $('.showText').empty();
+  $('.showList').empty();
+  $.ajax({
+    url: `http://nflarrest.com/api/v1/crime/topPlayers/Dogfighting?param=Name`,
+    type: 'GET',
+    data: {
+      format: 'json'
+    },
+    success: function(response) {
+      $('.showText').text(`The following players are alleged to have commited dogfighting:`);
+      for(let i = 0; i < response.length; i++) {
+        let element = `${response[i].Name}`
+        if (i < response.length - 1) {
+        $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+        $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
       }
     },
     error: function() {

@@ -1,6 +1,66 @@
+html {
+  background: url('https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: white;
+}
+
+body {
+  background-color: transparent;
+  color: white;
+  font-size: 4vw;
+}
+
 ul, li {
   text-decoration: none;
   list-style: none;
-  font-size: 3vw;
+  font-size: 2vw;
   display: inline-block;
+}
+
+h1 {
+  font-size: 4vw;
+  text-shadow: 0 0 2vw purple;
+}
+
+h1:hover {
+  color: purple;
+  text-shadow: 0 0 2vw white;
+}
+
+h3 {
+  padding-top: 24px;
+  margin: 24px;
+  font-size: 2vw;
+  text-shadow: 0 0 2vw purple;
+}
+
+h3:hover {
+  color: purple;
+  text-shadow: 0 0 2vw white;
+}
+
+button {
+  font-size: 1vw;
+  background-color: black;
+  color: purple;
+  border-style: none;
+}
+
+button:hover {
+  font-size: 1vw;
+  background-color: purple;
+  color: black;
+  border-style: none;
+  box-shadow: 0 0 2vw white;
+}
+
+ .showText {
+   font-size: 1vw;
+ }
+
+.center {
+  text-align: center;
 }
