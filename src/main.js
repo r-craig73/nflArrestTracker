@@ -193,4 +193,31 @@ $('#PlayersDogFighting').click(function(){
   })
 });
 
+$('#Teams').click(function(){
+  $('.showText').empty();
+  $('.showList').empty();
+  $.ajax({
+    url: `http://nflarrest.com/api/v1/team?param=Team_preffered_name`,
+    type: 'GET',
+    data: {
+      format: 'json'
+    },
+    success: function(response) {
+      $('.showText').text(`The following teams contain players who have been arrested:`);
+      for(let i = 0; i < response.length; i++) {
+        let element = `${response[i].Team_preffered_name}`
+        if (i < response.length - 1) {
+        $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+        $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
+      }
+    },
+    error: function() {
+      $('#errors').text("There was an error processing your request.  Please try again.")
+    }
+  })
+})
+
 });
