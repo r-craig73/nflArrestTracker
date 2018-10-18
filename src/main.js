@@ -35,26 +35,53 @@ $(document).ready(function() {
   $('#PlayersDidMurder').click(function(){
     $('.showText').empty();
     $('.showList').empty();
-    $.ajax({
-      url: `http://nflarrest.com/api/v1/crime/topPlayers/Murder?param=Name`,
-      type: 'GET',
-      data: {
-        format: 'json'
-      },
-      success: function(response) {
-        $('.showText').text(`The following players are alleged to have committed murder:`);
-        for(let i = 0; i < response.length; i++) {
-          let element = `${response[i].Name}`;
-          if (i < response.length - 1) {
-            $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
-          }
-          else {
-            $('.showList').append(" " + '<li>' + element + '.' + '</li>');
-          }
+    let result1;
+    let result2;
+    $.when(
+      $.ajax({
+        url: `http://nflarrest.com/api/v1/crime/topPlayers/Murder?param=Name`,
+        type: 'GET',
+        data: {
+          format: 'json'
+        },
+        success: function(response) {
+          result1 = response;
+        },
+        error: function() {
+          $('#errors').text("There was an error processing your request.  Please try again.");
         }
-      },
-      error: function() {
-        $('#errors').text("There was an error processing your request.  Please try again.");
+      }),
+      
+      $.ajax({
+        url: `http://nflarrest.com/api/v1/crime/topPlayers/Murder,%20gun?param=Name`,
+        type: 'GET',
+        data: {
+          format: 'json'
+        },
+        success: function(response) {
+          result2 = response;
+        },
+        error: function() {
+          $('#errors').text("There was an error processing your request.  Please try again.");
+        }
+      }),
+
+    ).then(function() {
+      $('.showText').text(`The following players are alleged to have committed murder:`);
+      for(let i = 0; i < result1.length; i++) {
+        let element = `${result1[i].Name}`;
+        if (i < result1.length) {
+          $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+      }
+      for(let i = 0; i < result2.length; i++) {
+        let element = `${result2[i].Name}`;
+        if (i < result2.length - 1) {
+          $('.showList').append(" " + '<li>' + element + ', ' +  '</li>');
+        }
+        else {
+          $('.showList').append(" " + '<li>' + element + '.' + '</li>');
+        }
       }
     });
   });
