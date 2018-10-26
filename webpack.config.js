@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -15,9 +14,6 @@ module.exports = {
     contentBase: './dist'
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {from:'./src/img',to:'images'}
-    ]),
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
@@ -34,18 +30,6 @@ module.exports = {
           'style-loader',
           'css-loader'
         ]
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i, // image code
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader', // image code
-            options: {
-              bypassOnDebug: true,
-            },
-          },
-        ],
       },
       {
         test: /\.js$/,
