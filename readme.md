@@ -41,4 +41,4 @@
 
 ## MIT License
 
-#### Copyright (c) 2018 _Ron Craig & Johnny Mayer_
+#### Copyright (c) 2019 _Ron Craig & Johnny Mayer_
